@@ -1,0 +1,23 @@
+{
+  "name": "moemorox/qaip",
+  "type": "phpbb-extension",
+  "description": "Quick activation in profile",
+  "version": "1.0.0",
+  "homepage": "https://github.com/MoeMorox/qaip",
+  "license": "GPL-2.0",
+  "authors": [
+    {
+      "name": "Moritz Schmidt"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "phpbb/phpbb": ">=3.3.0"
+  },
+  "extra": {
+    "display-name": "Quick activation in profile",
+    "soft-require": {
+      "phpbb/phpbb": ">=3.3.0"
+    }
+  }
+}

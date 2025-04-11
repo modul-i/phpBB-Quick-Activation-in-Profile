@@ -1,0 +1,11 @@
+services:
+  moemorox.qaip.listener:
+    class: moemorox\qaip\event\listener
+    arguments:
+      - '@dbal.conn'
+      - '@language'
+      - '@template'
+      - '@user'
+      - '@auth'
+    tags:
+      - { name: event.listener }
