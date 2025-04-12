@@ -3,7 +3,7 @@
   "type": "phpbb-extension",
   "description": "Quick activation in profile",
   "version": "1.0.0",
-  "homepage": "https://github.com/MoeMorox/qaip",
+  "homepage": "https://github.com/modul-i/phpBB-Quick-Activation-in-Profile/",
   "license": "GPL-2.0",
   "authors": [
     {
@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "php": ">=7.1",
+    "php": ">=7.2",
     "phpbb/phpbb": ">=3.3.0"
   },
   "extra": {
