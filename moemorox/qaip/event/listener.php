@@ -13,19 +13,26 @@ class listener implements EventSubscriberInterface
 	protected $template;
 	protected $user;
 	protected $auth;
+	protected $db_tools;
+	protected $request;
 
 	public function __construct(
 		\phpbb\db\driver\driver_interface $db,
 		\phpbb\language\language $language,
 		\phpbb\template\template $template,
 		\phpbb\user $user,
-		\phpbb\auth\auth $auth
+		\phpbb\auth\auth $auth,
+		\phpbb\db\tools\tools $db_tools,
+		\phpbb\request\request $request
 	) {
 		$this->db = $db;
 		$this->language = $language;
 		$this->user = $user;
 		$this->auth = $auth;
 		$this->template = $template;
+		$this->db_tools = $db_tools;
+		$this->request = $request;
+
 		$this->language->add_lang('common', 'moemorox/qaip');
 	}
 
@@ -46,23 +53,15 @@ class listener implements EventSubscriberInterface
 
 	public function add_activate_url($event)
 	{
-		$tpl = $event['template_ary'];
-
 		// Admin check
 		if (!$this->user->data['is_registered'] || !($this->auth->acl_get('a_') || $this->user->data['user_type'] == USER_FOUNDER)) {
 			return;
 		}
 
-		if (!isset($tpl['U_CANONICAL'])) {
+		$user_id = (int) $this->request->variable('u', 0);
+		if (empty($user_id)) {
 			return;
 		}
-
-		// Extract user_id from URL
-		if (!preg_match('/[&|&amp;|\?]u=(\d+)/', $tpl['U_CANONICAL'], $matches)) {
-			return;
-		}
-
-		$user_id = (int) $matches[1];
 
 		// Get user_actkey from DB
 		$sql = 'SELECT user_actkey FROM ' . USERS_TABLE . ' WHERE user_id = ' . $user_id . ' AND user_type = 1;';
@@ -89,17 +88,10 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
-		$tpl = $event['template_ary'];
-
-		if (!isset($tpl['U_CANONICAL'])) {
+		$user_id = (int) $this->request->variable('u', 0);
+		if (empty($user_id)) {
 			return;
 		}
-
-		if (!preg_match('/[&|&amp;|\?]u=(\d+)/', $tpl['U_CANONICAL'], $matches)) {
-			return;
-		}
-
-		$user_id = (int) $matches[1];
 
 		$sql = 'SELECT user_email FROM ' . USERS_TABLE . ' WHERE user_id = ' . $user_id;
 		$result = $this->db->sql_query($sql);
@@ -122,25 +114,13 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
-		$tpl = $event['template_ary'];
-
-		if (!isset($tpl['U_CANONICAL'])) {
+		if (!$this->db_tools->sql_column_exists(PROFILE_FIELDS_DATA_TABLE, 'pf_phpbb_website')) {
 			return;
 		}
 
-		if (!preg_match('/[&|&amp;|\\?]u=(\\d+)/', $tpl['U_CANONICAL'], $matches)) {
+		$user_id = (int) $this->request->variable('u', 0);
+		if (empty($user_id)) {
 			return;
-		}
-
-		$user_id = (int) $matches[1];
-
-		$sql = "SHOW COLUMNS FROM " . PROFILE_FIELDS_DATA_TABLE . " LIKE 'pf_phpbb_website'";
-		$result = $this->db->sql_query($sql);
-		$exists = (bool) $this->db->sql_fetchrow($result);
-		$this->db->sql_freeresult($result);
-
-		if (!$exists) {
-			return; // no website custom profile field
 		}
 
 		$sql = 'SELECT pf_phpbb_website FROM ' . PROFILE_FIELDS_DATA_TABLE . ' WHERE user_id = ' . $user_id;
@@ -164,17 +144,10 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
-		$tpl = $event['template_ary'];
-
-		if (!isset($tpl['U_CANONICAL'])) {
+		$user_id = (int) $this->request->variable('u', 0);
+		if (empty($user_id)) {
 			return;
 		}
-
-		if (!preg_match('/[&|&amp;|\\?]u=(\\d+)/', $tpl['U_CANONICAL'], $matches)) {
-			return;
-		}
-
-		$user_id = (int) $matches[1];
 
 		$sql = 'SELECT user_ip FROM ' . USERS_TABLE . ' WHERE user_id = ' . $user_id;
 		$result = $this->db->sql_query($sql);
