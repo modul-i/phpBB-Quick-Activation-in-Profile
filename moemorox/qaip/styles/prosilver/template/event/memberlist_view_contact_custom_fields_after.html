@@ -1,18 +1,24 @@
 {% INCLUDECSS 'qaip.css' %}
 </dl>
-<h3>{L_ADMINS_AREA}</h3>
+
+<h3>{{ lang('ADMINS_AREA') }}</h3>
 <dl class="details">
-<!-- IF USER_REAL_EMAIL -->
-<dt>{L_EMAIL_ADDRESS}{L_COLON}</dt><dd>{USER_REAL_EMAIL}</dd>
-<!-- ENDIF -->
-<!-- IF USER_WEBSITE_RAW -->
-<dt>{L_WEBSITE}{L_COLON}</dt>
-<dd><a href="{USER_WEBSITE_RAW}" target="_blank" rel="nofollow noopener">{USER_WEBSITE_RAW}</a></dd>
-<!-- ENDIF -->
-<!-- IF USER_IP -->
-<dt>{L_LAST_IP}:</dt>
-<dd><a href="{USER_IP_URL}" target="_blank" rel="noopener">{USER_IP}</a></dd>
-<!-- ENDIF -->
-<!-- IF USER_REAL_EMAIL or USER_WEBSITE_RAW or USER_IP -->
-<dt>&nbsp;</dt>
-<!-- ENDIF -->
+
+{% if USER_REAL_EMAIL %}
+    <dt>{{ lang('EMAIL_ADDRESS') }}:</dt>
+    <dd>{{ USER_REAL_EMAIL }}</dd>
+{% endif %}
+
+{% if USER_WEBSITE_RAW %}
+    <dt>{{ lang('WEBSITE') }}:</dt>
+    <dd><a href="{{ USER_WEBSITE_RAW }}" target="_blank" rel="nofollow noopener">{{ USER_WEBSITE_RAW }}</a></dd>
+{% endif %}
+
+{% if USER_IP %}
+    <dt>{{ lang('LAST_IP') }}:</dt>
+    <dd><a href="{{ USER_IP_URL }}" target="_blank" rel="noopener">{{ USER_IP }}</a></dd>
+{% endif %}
+
+{% if USER_REAL_EMAIL or USER_WEBSITE_RAW or USER_IP %}
+    <dt>&nbsp;</dt>
+{% endif %}
