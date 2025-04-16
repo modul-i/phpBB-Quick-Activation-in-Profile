@@ -12,6 +12,8 @@ The extended user profile also contains the e-mail address, website address and 
 - No settings.
 
 ## Screenshots
+![Benutzerprofil vor Benutzeraktivierung](screenshots/newuser_profile_inactive.png)
+![Benutzerprofil mit erweiterten Informationen](screenshots/newuser_profile.png)
 
 ## Requirements
 - phpBB 3.3.0 or higher
