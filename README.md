@@ -35,6 +35,9 @@ Click the Disable link for "Quick activation in profile".
 To permanently uninstall, click Delete Data, then delete the qaip folder from phpBB3/ext/moemorox/.
 
 ## Changelog
+### v1.0.1 (16-04-2025)
+- Code changes
+- Optimised template
 ### v1.0.0 (01-04-2025)
 
 ## License
