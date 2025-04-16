@@ -149,15 +149,15 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
-		$sql = 'SELECT `session_ip` FROM ' . SESSIONS_TABLE . ' WHERE session_user_id = ' . $user_id . ' ORDER BY session_time DESC LIMIT 1';
+		$sql = 'SELECT user_ip FROM ' . USERS_TABLE . ' WHERE user_id = ' . $user_id;
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
 
-		if (!empty($row['session_ip'])) {
+		if (!empty($row['user_ip'])) {
 			$this->template->assign_vars([
-				'USER_IP' => $row['session_ip'],
-				'USER_IP_URL' => 'https://ipinfo.io/' . $row['session_ip'],
+				'USER_IP' => $row['user_ip'],
+				'USER_IP_URL' => 'https://ipinfo.io/' . $row['user_ip'],
 			]);
 		}
 	}
