@@ -12,8 +12,8 @@ The extended user profile also contains the e-mail address, website address and 
 - No settings.
 
 ## Screenshots
-![Benutzerprofil vor Benutzeraktivierung](https://github.com/modul-i/phpBB-Quick-Activation-in-Profile/blob/main/screenshots/newuser_profile_inactive.png)
-![Benutzerprofil mit erweiterten Informationen](https://github.com/modul-i/phpBB-Quick-Activation-in-Profile/blob/main/screenshots/newuser_profile.png)
+![Benutzerprofil vor Benutzeraktivierung](https://raw.githubusercontent.com/modul-i/phpBB-Quick-Activation-in-Profile/main/screenshots/newuser_profile_inactive.png)
+![Benutzerprofil mit erweiterten Informationen](https://raw.githubusercontent.com/modul-i/phpBB-Quick-Activation-in-Profile/main/screenshots/newuser_profile.png)
 
 ## Requirements
 - phpBB 3.3.0 or higher
