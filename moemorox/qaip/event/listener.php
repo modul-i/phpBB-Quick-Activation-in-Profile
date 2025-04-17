@@ -22,7 +22,8 @@ class listener implements EventSubscriberInterface
 		\phpbb\auth\auth $auth,
 		\phpbb\db\tools\tools $db_tools,
 		\phpbb\request\request $request
-	) {
+	)
+	{
 		$this->db = $db;
 		$this->language = $language;
 		$this->user = $user;
@@ -41,23 +42,25 @@ class listener implements EventSubscriberInterface
 		];
 	}
 
-	public function memberlist_modify_view_profile_template_vars($event)
+	public function memberlist_modify_view_profile_template_vars()
 	{
-		$this->add_activate_url($event);
-		$this->inject_email($event);
-		$this->inject_website($event);
-		$this->inject_ip($event);
+		$this->add_activate_url();
+		$this->inject_email();
+		$this->inject_website();
+		$this->inject_ip();
 	}
 
-	public function add_activate_url($event)
+	public function add_activate_url()
 	{
 		// Admin check
-		if (!$this->user->data['is_registered'] || !($this->auth->acl_get('a_') || $this->user->data['user_type'] == USER_FOUNDER)) {
+		if (!$this->user->data['is_registered'] || !($this->auth->acl_get('a_') || $this->user->data['user_type'] == USER_FOUNDER))
+		{
 			return;
 		}
 
 		$user_id = (int) $this->request->variable('u', 0);
-		if (empty($user_id)) {
+		if (empty($user_id))
+		{
 			return;
 		}
 
@@ -67,27 +70,30 @@ class listener implements EventSubscriberInterface
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
 
-		if (!empty($row['user_actkey'])) {
+		if (!empty($row['user_actkey']))
+		{
 			$activate_link = generate_board_url() . "/ucp.php?mode=activate&u={$user_id}&k=" . $row['user_actkey'];
 
 			$this->template->assign_vars([
 				'U_ACTIVATE' => $activate_link,
-				'L_USER_ACTIVATE' => $this->language->lang('USER_ACTIVATE')
+				'L_USER_ACTIVATE' => $this->language->lang('USER_ACTIVATE'),
 			]);
 		}
 	}
 
-	public function inject_email($event)
+	public function inject_email()
 	{
 		if (
 			!$this->user->data['is_registered']
 			|| !($this->auth->acl_get('a_') || $this->user->data['user_type'] == USER_FOUNDER)
-		) {
+		)
+		{
 			return;
 		}
 
 		$user_id = (int) $this->request->variable('u', 0);
-		if (empty($user_id)) {
+		if (empty($user_id))
+		{
 			return;
 		}
 
@@ -96,28 +102,32 @@ class listener implements EventSubscriberInterface
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
 
-		if (!empty($row['user_email'])) {
+		if (!empty($row['user_email']))
+		{
 			$this->template->assign_vars([
-				'USER_REAL_EMAIL' => $row['user_email']
+				'USER_REAL_EMAIL' => $row['user_email'],
 			]);
 		}
 	}
 
-	public function inject_website($event)
+	public function inject_website()
 	{
 		if (
 			!$this->user->data['is_registered']
 			|| !($this->auth->acl_get('a_') || $this->user->data['user_type'] == USER_FOUNDER)
-		) {
+		)
+		{
 			return;
 		}
 
-		if (!$this->db_tools->sql_column_exists(PROFILE_FIELDS_DATA_TABLE, 'pf_phpbb_website')) {
+		if (!$this->db_tools->sql_column_exists(PROFILE_FIELDS_DATA_TABLE, 'pf_phpbb_website'))
+		{
 			return;
 		}
 
 		$user_id = (int) $this->request->variable('u', 0);
-		if (empty($user_id)) {
+		if (empty($user_id))
+		{
 			return;
 		}
 
@@ -126,24 +136,27 @@ class listener implements EventSubscriberInterface
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
 
-		if (!empty($row['pf_phpbb_website'])) {
+		if (!empty($row['pf_phpbb_website']))
+		{
 			$this->template->assign_vars([
 				'USER_WEBSITE_RAW' => $row['pf_phpbb_website'],
 			]);
 		}
 	}
 
-	public function inject_ip($event)
+	public function inject_ip()
 	{
 		if (
 			!$this->user->data['is_registered']
 			|| !($this->auth->acl_get('a_') || $this->user->data['user_type'] == USER_FOUNDER)
-		) {
+		)
+		{
 			return;
 		}
 
 		$user_id = (int) $this->request->variable('u', 0);
-		if (empty($user_id)) {
+		if (empty($user_id))
+		{
 			return;
 		}
 
@@ -152,7 +165,8 @@ class listener implements EventSubscriberInterface
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
 
-		if (!empty($row['user_ip'])) {
+		if (!empty($row['user_ip']))
+		{
 			$this->template->assign_vars([
 				'USER_IP' => $row['user_ip'],
 				'USER_IP_URL' => 'https://ipinfo.io/' . $row['user_ip'],

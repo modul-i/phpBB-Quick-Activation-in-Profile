@@ -4,7 +4,7 @@
   "description": "Quick activation in profile",
   "version": "1.0.1",
   "homepage": "https://github.com/modul-i/phpBB-Quick-Activation-in-Profile/",
-  "license": "GPL-2.0",
+  "license": "GPL-2.0-only",
   "authors": [
     {
       "name": "Moritz Schmidt"
