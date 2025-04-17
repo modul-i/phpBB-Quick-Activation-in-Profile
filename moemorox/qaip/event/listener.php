@@ -3,8 +3,6 @@
 namespace moemorox\qaip\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use const PROFILE_FIELDS_DATA_TABLE;
-
 
 class listener implements EventSubscriberInterface
 {
@@ -64,7 +62,7 @@ class listener implements EventSubscriberInterface
 		}
 
 		// Get user_actkey from DB
-		$sql = 'SELECT user_actkey FROM ' . USERS_TABLE . ' WHERE user_id = ' . $user_id . ' AND user_type = 1;';
+		$sql = 'SELECT user_actkey FROM ' . USERS_TABLE . ' WHERE user_id = ' . $this->db->sql_escape($user_id) . ' AND user_type = 1;';
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
@@ -93,7 +91,7 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
-		$sql = 'SELECT user_email FROM ' . USERS_TABLE . ' WHERE user_id = ' . $user_id;
+		$sql = 'SELECT user_email FROM ' . USERS_TABLE . ' WHERE user_id = ' . $this->db->sql_escape($user_id);
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
@@ -123,7 +121,7 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
-		$sql = 'SELECT pf_phpbb_website FROM ' . PROFILE_FIELDS_DATA_TABLE . ' WHERE user_id = ' . $user_id;
+		$sql = 'SELECT pf_phpbb_website FROM ' . PROFILE_FIELDS_DATA_TABLE . ' WHERE user_id = ' . $this->db->sql_escape($user_id);
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
@@ -149,7 +147,7 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
-		$sql = 'SELECT user_ip FROM ' . USERS_TABLE . ' WHERE user_id = ' . $user_id;
+		$sql = 'SELECT user_ip FROM ' . USERS_TABLE . ' WHERE user_id = ' . $this->db->sql_escape($user_id);
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
