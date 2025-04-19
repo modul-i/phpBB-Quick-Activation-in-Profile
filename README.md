@@ -37,7 +37,8 @@ To permanently uninstall, click Delete Data, then delete the qaip folder from ph
 ## Changelog
 ### v1.0.2 (19-04-2025)
 - Code changes
-- New and optimised templates
+- Optimised templates
+- New language files
 ### v1.0.1 (16-04-2025)
 - Code changes
 - Optimised template
