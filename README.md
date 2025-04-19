@@ -12,8 +12,8 @@ The extended user profile also contains the e-mail address, website address and 
 - No settings.
 
 ## Screenshots
-![Benutzerprofil vor Benutzeraktivierung](screenshots/newuser_profile_inactive.png)
-![Benutzerprofil mit erweiterten Informationen](screenshots/newuser_profile.png)
+![Benutzerprofil vor Benutzeraktivierung](screenshots/neuesmitglied_profil_inaktiv.png)
+![Benutzerprofil mit erweiterten Informationen](screenshots/neuesmitglied_profil.png)
 
 ## Requirements
 - phpBB 3.3.0 or higher
@@ -35,6 +35,9 @@ Click the Disable link for "Quick activation in profile".
 To permanently uninstall, click Delete Data, then delete the qaip folder from phpBB3/ext/moemorox/.
 
 ## Changelog
+### v1.0.2 (19-04-2025)
+- Code changes
+- New and optimised templates
 ### v1.0.1 (16-04-2025)
 - Code changes
 - Optimised template
