@@ -6,7 +6,7 @@ if (!defined('IN_PHPBB'))
 }
 
 $lang = array_merge($lang, array(
-	'USER_ACTIVATE' => 'Benutzer aktivieren',
-	'ADMINS_AREA' => 'Infobereich für Administratoren',
-	'LAST_IP' => 'IP-Adresse bei Registrierung',
+	'USER_ACTIVATE' => 'Attiva account',
+	'ADMINS_AREA' => 'Area info per amministrazione',
+	'LAST_IP' => 'Registrato da IP',
 ));
