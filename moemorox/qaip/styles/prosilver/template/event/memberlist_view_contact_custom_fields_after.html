@@ -1,24 +1,26 @@
-{% INCLUDECSS 'qaip.css' %}
-</dl>
+{% if USER_REAL_EMAIL is defined or USER_WEBSITE_RAW is defined or USER_IP is defined %}
+	{% INCLUDECSS 'qaip.css' %}
+	</dl>
 
-<h3>{{ lang('ADMINS_AREA') }}</h3>
-<dl class="details">
+	<h3>{{ lang('ADMINS_AREA') }}</h3>
+	<dl class="details">
+{% endif %}
 
-{% if USER_REAL_EMAIL %}
+{% if USER_REAL_EMAIL is defined %}
     <dt>{{ lang('EMAIL_ADDRESS') }}:</dt>
     <dd>{{ USER_REAL_EMAIL }}</dd>
 {% endif %}
 
-{% if USER_WEBSITE_RAW %}
+{% if USER_WEBSITE_RAW is defined %}
     <dt>{{ lang('WEBSITE') }}:</dt>
     <dd><a href="{{ USER_WEBSITE_RAW }}" target="_blank" rel="nofollow noopener">{{ USER_WEBSITE_RAW }}</a></dd>
 {% endif %}
 
-{% if USER_IP %}
+{% if USER_IP is defined %}
     <dt>{{ lang('LAST_IP') }}:</dt>
     <dd><a href="{{ USER_IP_URL }}" target="_blank" rel="noopener">{{ USER_IP }}</a></dd>
 {% endif %}
 
-{% if USER_REAL_EMAIL or USER_WEBSITE_RAW or USER_IP %}
+{% if USER_REAL_EMAIL is defined or USER_WEBSITE_RAW is defined or USER_IP is defined %}
     <dt>&nbsp;</dt>
 {% endif %}
