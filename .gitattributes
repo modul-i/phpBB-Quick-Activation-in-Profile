@@ -1,5 +1,6 @@
 * text=auto
 * text eol=lf
+*.png binary
 
 .gitattributes export-ignore
 .editorconfig export-ignore
